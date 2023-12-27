@@ -28,5 +28,4 @@ public class PropertyManager {
         Properties appProps = getProperties();
         return appProps.getProperty("Id");
     }
-
 }
