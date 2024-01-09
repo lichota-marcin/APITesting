@@ -1,13 +1,13 @@
 package AssertJTests;
 
 import APICalls.PostCall;
-import static org.assertj.core.api.Assertions.*;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utility.PropertyManager;
 
-
 import java.io.IOException;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestPost extends PostCall {
 
@@ -16,24 +16,27 @@ public class TestPost extends PostCall {
 
     @BeforeClass
     public void setup() throws IOException {
-        setNewID();}
+        String newId = post.getId();
+        PropertyManager.setNewId(newId);
+    }
 
-    @Test (priority = 0)
-    public void isResponseCodeEqualTo200() {
+
+    @Test(priority = 0)
+    public void responseCodeShouldBe200() throws IOException {
         int code = getResponseCode(httpResponse);
-    assertThat(code).isEqualTo(200);
+        assertThat(code).as("Check if response code is equal to 200").isEqualTo(200);
     }
 
-    @Test ( priority = 0 )
-    public void testId() throws IOException {
+    @Test(priority = 0)
+    public void responseIdShouldMatchExpected() throws IOException {
         String id = post.getId();
-        assertThat(id).isEqualTo(PropertyManager.getId());
-
+        assertThat(id).as("Check if id matches expected").isEqualTo(PropertyManager.getId());
     }
-    @Test ( priority = 0 )
-    public void testName(){
+
+    @Test(priority = 0)
+    public void responseNameShouldBeTestBoard() {
         String name = post.getName();
-        assertThat(name).isEqualTo("test_board");
+        assertThat(name).as("Check if name is test_board").isEqualTo("test_board");
 
     }
 }

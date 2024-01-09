@@ -4,42 +4,45 @@ import APICalls.GetCall;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import utility.PropertyManager;
 
-import static org.hamcrest.Matchers.equalTo;
-
-
 import java.io.IOException;
 
+import static org.hamcrest.Matchers.equalTo;
+
 public class TestGet extends GetCall {
+
     public TestGet() throws IOException {
     }
 
-
-    static RequestSpecification httpRequest = RestAssured.given().when().header("Content-Type", "application/json");
-    static Response response = httpRequest.get(GET_URL);
-
-    @Test
-    public static void testId() throws IOException {
+    @Test(priority = 1)
+    public void responseIdShouldMatchExpected() throws IOException {
+        RequestSpecification httpRequest = RestAssured.given().when().header("Content-Type", "application/json");
+        Response response = httpRequest.get(GET_URL);
         response.then().assertThat().body("id", equalTo(PropertyManager.getId()));
     }
-    @Test
-    public static void testName() throws IOException {
+
+    @Test(priority = 1)
+    public void responseNameShouldBeTestBoard() {
+        RequestSpecification httpRequest = RestAssured.given().when().header("Content-Type", "application/json");
+        Response response = httpRequest.get(GET_URL);
         response.then().assertThat().body("name", equalTo("test_board"));
     }
-    @Test
-    public static void checkIfResponseCodeOfGetIsEqualTo200(){
-        int statusCode = response.getStatusCode();
-        Assert.assertEquals(statusCode, 200);
+
+    @Test(priority = 1)
+    public void checkIfResponseCodeOfGetIsEqualTo200() {
+        RequestSpecification httpRequest = RestAssured.given().when().header("Content-Type", "application/json");
+        Response response = httpRequest.get(GET_URL);
+        response.then().statusCode(200);
     }
 
-    @Test
-    public static void checkIfPrefsPermissionLevelEqualsPrivate(){
+    @Test(priority = 1)
+    public void checkIfPrefsPermissionLevelEqualsPrivate() {
+        RequestSpecification httpRequest = RestAssured.given().when().header("Content-Type", "application/json");
+        Response response = httpRequest.get(GET_URL);
         response.then().assertThat().body("prefs.permissionLevel", equalTo("private"));
-        // .log().all();
-        //.statusCode(200).
+
     }
-    }
+}
 

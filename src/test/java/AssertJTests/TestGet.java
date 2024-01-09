@@ -13,22 +13,23 @@ public class TestGet extends GetCall {
     public TestGet() throws IOException {
     }
 
-    @Test(priority = 0)
-    public void isResponseCodeEqualTo200() {
+    @Test(priority = 1)
+    public void responseCodeShouldBe200() throws IOException {
         int code = getResponseCode(httpResponse);
-        assertThat(code).isEqualTo(200);
+        assertThat(code).as("Check if response code is equal to 200").isEqualTo(200);
     }
 
-    @Test ( priority = 0 )
-    public void testId() throws IOException {
+    @Test(priority = 1)
+    public void responseIdShouldMatchExpected() throws IOException {
         String id = get.getId();
-        assertThat(id).isEqualTo(PropertyManager.getId());
+        assertThat(id).as("Check if id matches expected").isEqualTo(PropertyManager.getId());
 
     }
-    @Test ( priority = 0 )
-    public void testName(){
+
+    @Test(priority = 1)
+    public void responseNameShouldBeTestBoard() {
         String name = get.getName();
-        assertThat(name).isEqualTo("test_board");
+        assertThat(name).as("Check if name is test_board").isEqualTo("test_board");
 
     }
 }

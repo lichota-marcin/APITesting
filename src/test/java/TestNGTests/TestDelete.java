@@ -4,9 +4,8 @@ import APICalls.DeleteCall;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import java.io.IOException;
 
-import static APICalls.GetCall.callGet;
+import java.io.IOException;
 
 
 public class TestDelete extends DeleteCall {
@@ -14,22 +13,18 @@ public class TestDelete extends DeleteCall {
     }
 
     @Test(priority = 3)
-    public void isResponseCodeEqualTo200() {
+    public void responseCodeShouldBe200() throws IOException {
         int code = getResponseCode(httpResponse);
-        Assert.assertEquals(code, 200 );
-    }
-    @Test(priority = 3)
-        public void checkIfBoardExistsAfterDeletion() throws IOException {
-        CloseableHttpResponse httpResponse =  callGet();
-        int code = getResponseCode(httpResponse);
-        Assert.assertEquals(code, 404);
-        }
+        Assert.assertEquals(code, 200, "Response code is not 200");
     }
 
-//    @Test(priority = 3)
-//    public void testId() throws IOException {
-//        String id = get.getId();
-//        Assert.assertEquals(PropertyManager.getId(), id);
-//    }
+    @Test(priority = 4)
+    public void checkIfBoardExistsAfterDeletion() throws IOException {
+        CloseableHttpResponse httpResponse = checkIfBoardExists();
+        int code = getResponseCode(httpResponse);
+        Assert.assertEquals(code, 404, "Response code is not 404");
+    }
+}
+
 
 

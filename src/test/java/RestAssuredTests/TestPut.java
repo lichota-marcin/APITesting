@@ -4,7 +4,6 @@ import APICalls.PutCall;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import utility.PropertyManager;
 
@@ -14,23 +13,29 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class TestPut extends PutCall {
 
+
     public TestPut() throws IOException {
     }
 
-    static RequestSpecification httpRequest = RestAssured.given().when().header("Content-Type", "application/json");
-    static Response response = httpRequest.put(PUT_URL);
 
-    @Test
-    public static void testId() throws IOException {
+    @Test(priority = 2)
+    public void responseIdShouldMatchExpected() throws IOException {
+        RequestSpecification httpRequest = RestAssured.given().when().header("Content-Type", "application/json");
+        Response response = httpRequest.put(PUT_URL);
         response.then().assertThat().body("id", equalTo(PropertyManager.getId()));
     }
-    @Test
-    public static void testName() throws IOException {
-        response.then().assertThat().body("name", equalTo("test_board"));
+
+    @Test(priority = 2)
+    public void responseNameShouldBeChangedBoard() {
+        RequestSpecification httpRequest = RestAssured.given().when().header("Content-Type", "application/json");
+        Response response = httpRequest.put(PUT_URL);
+        response.then().assertThat().body("name", equalTo("changed_board"));
     }
-    @Test
-    public static void checkIfResponseCodeOfGetIsEqualTo200(){
-        int statusCode = response.getStatusCode();
-        Assert.assertEquals(statusCode, 200);
+
+    @Test(priority = 2)
+    public void checkIfResponseCodeOfPutIsEqualTo200() {
+        RequestSpecification httpRequest = RestAssured.given().when().header("Content-Type", "application/json");
+        Response response = httpRequest.put(PUT_URL);
+        response.then().statusCode(200);
     }
 }

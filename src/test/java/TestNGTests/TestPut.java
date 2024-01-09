@@ -14,20 +14,20 @@ public class TestPut extends PutCall {
     }
 
     @Test(priority = 2)
-    public void isResponseCodeEqualTo200() {
+    public void responseCodeShouldBe200() throws IOException {
         int code = getResponseCode(httpResponse);
-        Assert.assertEquals(code, 200 );
+        Assert.assertEquals(code, 200, "Response code is not 200");
     }
 
     @Test(priority = 2)
-    public void testId() throws IOException {
+    public void responseIdShouldMatchExpected() throws IOException {
         String id = put.getId();
-        Assert.assertEquals(id, PropertyManager.getId());
+        Assert.assertEquals(id, PropertyManager.getId(), "Id does not match expected");
     }
 
     @Test(priority = 2)
-    public void testName() {
+    public void responseNameShouldBeChangedBoard() {
         String name = put.getName();
-        Assert.assertEquals(name, "test_board");
+        Assert.assertEquals(name, "changed_board", "Board's name is not changed_board");
     }
 }

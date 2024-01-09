@@ -1,11 +1,12 @@
 package TestNGTests;
 
-import java.io.IOException;
 import APICalls.PostCall;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utility.PropertyManager;
+
+import java.io.IOException;
 
 public class TestPost extends PostCall {
 
@@ -13,26 +14,28 @@ public class TestPost extends PostCall {
     }
 
     @BeforeClass
-            public void setup() throws IOException {
-            setNewID();}
+    public void setup() throws IOException {
+        String newId = post.getId();
+        PropertyManager.setNewId(newId);
+    }
 
-    @Test ( priority = 0 )
-    public void isResponseCodeEqualTo200() {
+
+    @Test(priority = 0)
+    public void responseCodeShouldBe200() throws IOException {
         int code = getResponseCode(httpResponse);
-        Assert.assertEquals(code, 200 );
+        Assert.assertEquals(code, 200, "Response code is not 200");
+    }
 
-    }
-    @Test ( priority = 0 )
-    public void testId() throws IOException {
+    @Test(priority = 0)
+    public void responseIdShouldMatchExpected() throws IOException {
         String id = post.getId();
-        Assert.assertEquals(id, PropertyManager.getId());
-        //I realize that this uses the same method for getting id of both sides of assertion hence it will always be true
-        //but I decided to leave it here
+        Assert.assertEquals(id, PropertyManager.getId(), "Id does not match expected");
     }
-    @Test ( priority = 0 )
-    public void testName(){
+
+    @Test(priority = 0)
+    public void responseNameShouldBeTestBoard() {
         String name = post.getName();
-        Assert.assertEquals(name, "test_board");
+        Assert.assertEquals(name, "test_board", "Board's name is not test_board");
     }
 
 

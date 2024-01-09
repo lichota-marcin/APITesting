@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-import static APICalls.GetCall.callGet;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestDelete extends DeleteCall {
@@ -15,15 +14,16 @@ public class TestDelete extends DeleteCall {
     }
 
     @Test(priority = 3)
-    public void isResponseCodeEqualTo200() {
+    public void responseCodeShouldBe200() throws IOException {
         int code = getResponseCode(httpResponse);
-        assertThat(code).isEqualTo(200);
+        assertThat(code).as("Check if response code is equal to 200").isEqualTo(200);
     }
-    @Test(priority = 3)
+
+    @Test(priority = 4)
     public void checkIfBoardExistsAfterDeletion() throws IOException {
-        CloseableHttpResponse httpResponse =  callGet();
+        CloseableHttpResponse httpResponse = checkIfBoardExists();
         int code = getResponseCode(httpResponse);
-        assertThat(code).isEqualTo(404);
+        assertThat(code).as("Check if response code is equal to 404").isEqualTo(404);
     }
 }
 
