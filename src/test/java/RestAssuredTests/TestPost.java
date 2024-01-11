@@ -1,6 +1,6 @@
 package RestAssuredTests;
 
-import APICalls.PostCall;
+import APICalls.BaseCall;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
@@ -12,15 +12,14 @@ import java.io.IOException;
 import static org.hamcrest.Matchers.equalTo;
 import static utility.PropertyManager.setNewId;
 
-public class TestPost extends PostCall {
+public class TestPost extends BaseCall {
+    protected String POST_URL = "https://api.trello.com/1/boards/?name=test_board&key=" + apiKey + "&token=" + apiToken;
 
-    Response response = RestAssured.given().when().header("Content-Type", "application/json").post(POST_URL);
-
-    public TestPost() throws IOException {
-    }
+    Response response;
 
     @BeforeClass
     public void setup() throws IOException {
+        response = RestAssured.given().when().header("Content-Type", "application/json").post(POST_URL);
         String id = response.then().extract().path("id");
         setNewId(id);
     }

@@ -12,6 +12,7 @@ import java.io.IOException;
 
 public class BaseCall {
 
+
     public static final String apiKey, apiToken, id;
 
     static {

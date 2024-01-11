@@ -1,6 +1,6 @@
 package RestAssuredTests;
 
-import APICalls.GetCall;
+import APICalls.BaseCall;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -11,10 +11,8 @@ import java.io.IOException;
 
 import static org.hamcrest.Matchers.equalTo;
 
-public class TestGet extends GetCall {
-
-    public TestGet() throws IOException {
-    }
+public class TestGet extends BaseCall {
+    protected String GET_URL = "https://api.trello.com/1/boards/" + id + "?key=" + apiKey + "&token=" + apiToken;
 
     @Test(priority = 1)
     public void responseIdShouldMatchExpected() throws IOException {

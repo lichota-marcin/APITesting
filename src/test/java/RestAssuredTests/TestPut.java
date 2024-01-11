@@ -1,6 +1,6 @@
 package RestAssuredTests;
 
-import APICalls.PutCall;
+import APICalls.BaseCall;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -11,12 +11,9 @@ import java.io.IOException;
 
 import static org.hamcrest.Matchers.equalTo;
 
-public class TestPut extends PutCall {
+public class TestPut extends BaseCall {
 
-
-    public TestPut() throws IOException {
-    }
-
+    protected String PUT_URL = "https://api.trello.com/1/boards/" + id + "?key=" + apiKey + "&token=" + apiToken + "&name=changed_board";
 
     @Test(priority = 2)
     public void responseIdShouldMatchExpected() throws IOException {
