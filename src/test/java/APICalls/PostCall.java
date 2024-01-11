@@ -11,7 +11,6 @@ import java.io.IOException;
 
 public class PostCall extends BaseCall {
 
-    protected String POST_URL = "https://api.trello.com/1/boards/?name=test_board&key=" + apiKey + "&token=" + apiToken;
 
     protected final CloseableHttpResponse httpResponse = callPost();
     public final Response post = (Response) deserializeObject(httpResponse);

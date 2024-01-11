@@ -9,7 +9,7 @@ import org.apache.http.impl.client.HttpClients;
 import java.io.IOException;
 
 public class GetCall extends BaseCall {
-    protected String GET_URL = "https://api.trello.com/1/boards/" + id + "?key=" + apiKey + "&token=" + apiToken;
+
     protected final CloseableHttpResponse httpResponse = callGet();
     protected final Response get = (Response) deserializeObject(httpResponse);
 

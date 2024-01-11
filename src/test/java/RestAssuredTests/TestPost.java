@@ -13,7 +13,6 @@ import static org.hamcrest.Matchers.equalTo;
 import static utility.PropertyManager.setNewId;
 
 public class TestPost extends BaseCall {
-    protected String POST_URL = "https://api.trello.com/1/boards/?name=test_board&key=" + apiKey + "&token=" + apiToken;
 
     Response response;
 

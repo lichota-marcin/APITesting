@@ -13,7 +13,6 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class TestPut extends BaseCall {
 
-    protected String PUT_URL = "https://api.trello.com/1/boards/" + id + "?key=" + apiKey + "&token=" + apiToken + "&name=changed_board";
 
     @Test(priority = 2)
     public void responseIdShouldMatchExpected() throws IOException {

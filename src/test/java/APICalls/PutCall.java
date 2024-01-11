@@ -10,7 +10,6 @@ import java.io.IOException;
 
 public class PutCall extends BaseCall {
 
-    protected String PUT_URL = "https://api.trello.com/1/boards/" + id + "?key=" + apiKey + "&token=" + apiToken + "&name=changed_board";
 
     protected final CloseableHttpResponse httpResponse = callPut();
     protected final Response put = (Response) deserializeObject(httpResponse);

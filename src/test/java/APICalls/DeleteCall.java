@@ -10,10 +10,7 @@ import java.io.IOException;
 
 public class DeleteCall extends BaseCall {
 
-    protected String DELETE_URL = "https://api.trello.com/1/boards/" + id + "?key=" + apiKey + "&token=" + apiToken;
     protected final CloseableHttpResponse httpResponse = callDelete();
-    protected String GET_URL = "https://api.trello.com/1/boards/" + id + "?key=" + apiKey + "&token=" + apiToken;
-
 
     public DeleteCall() throws IOException {
     }

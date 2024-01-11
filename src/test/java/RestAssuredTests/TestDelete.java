@@ -9,8 +9,6 @@ import org.testng.annotations.Test;
 
 
 public class TestDelete extends BaseCall {
-    protected String DELETE_URL = "https://api.trello.com/1/boards/" + id + "?key=" + apiKey + "&token=" + apiToken;
-    protected String GET_URL = "https://api.trello.com/1/boards/" + id + "?key=" + apiKey + "&token=" + apiToken;
 
     @Test(priority = 3)
     public void responseCodeShouldBe200() {

@@ -13,6 +13,13 @@ import java.io.IOException;
 public class BaseCall {
 
 
+    protected String GET_URL = "https://api.trello.com/1/boards/" + id + "?key=" + apiKey + "&token=" + apiToken;
+    protected String POST_URL = "https://api.trello.com/1/boards/?name=test_board&key=" + apiKey + "&token=" + apiToken;
+    protected String PUT_URL = "https://api.trello.com/1/boards/" + id + "?key=" + apiKey + "&token=" + apiToken + "&name=changed_board";
+    protected String DELETE_URL = "https://api.trello.com/1/boards/" + id + "?key=" + apiKey + "&token=" + apiToken;
+
+
+
     public static final String apiKey, apiToken, id;
 
     static {
